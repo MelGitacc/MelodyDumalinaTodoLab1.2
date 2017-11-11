@@ -12,6 +12,9 @@ public class MainActivity extends AppCompatActivity {
     private String[] mTodos;
     private int mTodoIndex = 0;
 
+    //variable used for the value of TODO_INDEX-------(this is for rotation fix)
+    private static final String TODO_INDEX = "todoIndex";//-----
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -21,7 +24,20 @@ public class MainActivity extends AppCompatActivity {
 
         // set the user interface layout for this Activity
         // the layout file is defined in the project res/layout/activity_todo.xml file
-        setContentView(R.layout.activity_todo);
+        setContentView(R.layout.activity_main);
+
+        //---------------- test for this null state-----------------(this is for rotation fix)
+        // check for saved state due to changes such as rotation or back button
+        // and restore any saved state such as the todo index
+        if ( savedInstanceState != null ) {
+
+            //To the left of an equal sign, we have our mTodoIndex variable.
+            // To the right, we're calling a method on Bundle that has the name savedInstanceState.
+            // This method is getInt which is used to get an integer value from the Bundle.
+
+            mTodoIndex = savedInstanceState.getInt( TODO_INDEX, 0 );
+
+        }//--------------------------------------------------------------------------------
 
         // initialize member TextView so we can manipulate it later
         final TextView TodoTextView;
@@ -66,4 +82,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    //-----------Before our Activity is destroyed when the screen is rotated,------(this is for rotation fix)
+    // Android allows you to override a method called onSaveInstanceState
+    @Override
+    public void onSaveInstanceState(Bundle mySavedInstanceState ) {
+
+        super.onSaveInstanceState(mySavedInstanceState);
+
+        mySavedInstanceState.putInt( TODO_INDEX, mTodoIndex );
+
+    }///------------------------------------------------------------------
 }
