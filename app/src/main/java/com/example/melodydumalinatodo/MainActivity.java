@@ -3,6 +3,7 @@ package com.example.melodydumalinatodo;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,12 +16,18 @@ public class MainActivity extends AppCompatActivity {
     //variable used for the value of TODO_INDEX-------(this is for rotation fix)
     private static final String TODO_INDEX = "todoIndex";//-----
 
+    //defining log TAG variable
+    public static final String TAG = "TodoActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         // call the super class onCreate to complete the creation of activity like
         // the view hierarchy
         super.onCreate(savedInstanceState);
+
+        //this method will be called out and prints the message if you rotate the device
+        Log.d(TAG," PC is in onCreate!");
 
         // set the user interface layout for this Activity
         // the layout file is defined in the project res/layout/activity_todo.xml file
@@ -63,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
                 mTodoIndex = (mTodoIndex + 1) % mTodos.length;
                 TodoTextView.setText(mTodos[mTodoIndex]);
 
+                //this method will be called and prints the message when next button is clicked
+                Log.d(TAG, "Next button is clicked");
+
             }
         });
 
@@ -79,6 +89,9 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     TodoTextView.setText(mTodos[mTodoIndex]);
                 }
+
+                //this method will be called and prints the message when previous button is clicked
+                Log.d(TAG, "Previous button is clicked");
             }
         });
     }
@@ -93,4 +106,45 @@ public class MainActivity extends AppCompatActivity {
         mySavedInstanceState.putInt( TODO_INDEX, mTodoIndex );
 
     }///------------------------------------------------------------------
+
+    //-----------------Activity lifecycle ---------------------------
+    //overriding lifecycle methods
+    //this log cat messages shows the state of the activity that you are running
+   // log message when phone is rotated
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG,"onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG,"onResume");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG,"onStop");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG,"onPause");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG,"onDestroy");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(TAG,"onRestart");
+    }
 }

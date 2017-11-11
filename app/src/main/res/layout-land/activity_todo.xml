@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.mel.melodydumalinatodo.MainActivity">
+    tools:context="com.example.melodydumalinatodo.MainActivity">
 
     <TextView
         android:id="@+id/textViewTodo"
