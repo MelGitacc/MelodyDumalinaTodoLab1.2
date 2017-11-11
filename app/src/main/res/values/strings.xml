@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MelodyDumalinaTodo</string>
+    <string name="next">Next</string>
+    <string name="prev">Prev</string>
+    <string name="todo_list">Todo list!</string>
+
+    <string-array name="todo">
+        <item>Wake up</item>
+        <item>Take a bath</item>
+        <item>Get Ready</item>
+        <item>Have Breakfast</item>
+        <item>Go to Uni</item>
+        <item>Do some coursework</item>
+        <item>Go to work</item>
+        <item>Go home</item>
+        <item>Go to sleep</item>
+    </string-array>
+
+</resources>
